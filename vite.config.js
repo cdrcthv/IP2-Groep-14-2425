@@ -6,7 +6,8 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ command }) => ({
+  base: command === 'build' ? '/IP2-Groep-14-2425/' : '/',
   plugins: [
     vue(),
     vueJsx(),
@@ -18,9 +19,10 @@ export default defineConfig({
     },
   },
   server: {
-    allowedHosts: ['ip2-app.thauvoye.net'],
+    host: true, // Allow all hosts for demo
+    allowedHosts: 'all',
   },
   define: {
     'process.env': {}
   }
-})
+}))
